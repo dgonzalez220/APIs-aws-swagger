@@ -8,6 +8,8 @@ require("dotenv").config();
 
 const app = express();
 const PORT = process.env.PORT_USUARIOS || 4002;
+app.use(cors());
+app.use(express.json());
 
 // ============ AGREGAR CONFIGURACIÓN SWAGGER ============
 const swaggerOptions = {
@@ -24,7 +26,7 @@ const swaggerOptions = {
         description: 'Servidor local'
       },
       {
-        url: 'http://TU_IP_AWS:4002',
+        url: 'http://18.212.75.254:4002',
         description: 'Servidor AWS'
       }
     ]
@@ -36,8 +38,6 @@ const swaggerSpec = swaggerJsdoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 // =======================================================
 
-app.use(express.json());
-app.use(cors());
 
 const SECRET_KEY = process.env.JWT_SECRET || "CLAVE_SUPER_SECRETA";
 

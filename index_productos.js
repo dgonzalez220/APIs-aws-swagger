@@ -27,7 +27,7 @@ const swaggerOptions = {
         description: 'Servidor local'
       },
       {
-        url: 'http://TU_IP_AWS:4003',
+        url: 'http://18.212.75.254:4003',
         description: 'Servidor AWS'
       }
     ]
@@ -36,12 +36,13 @@ const swaggerOptions = {
 };
 
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 // =======================================================
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // -----------------------------
 // MULTER (guardar en disk/uploads)

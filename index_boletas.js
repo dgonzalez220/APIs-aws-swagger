@@ -24,7 +24,7 @@ const swaggerOptions = {
         description: 'Servidor local'
       },
       {
-        url: 'http://TU_IP_AWS:4006',
+        url: 'http://18.212.75.254:4006',
         description: 'Servidor AWS'
       }
     ]
@@ -33,11 +33,12 @@ const swaggerOptions = {
 };
 
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 // =======================================================
 
-app.use(express.json());
+
 app.use(cors());
+app.use(express.json());
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // ============================
 // CREAR TABLA BOLETA SI NO EXISTE

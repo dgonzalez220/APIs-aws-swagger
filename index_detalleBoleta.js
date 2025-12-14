@@ -24,7 +24,7 @@ const swaggerOptions = {
     },
     servers: [
       { url: `http://localhost:${PORT}`, description: 'Servidor local' },
-      { url: 'http://TU_IP_AWS:4004', description: 'Servidor AWS' }
+      { url: 'http://18.212.75.254:4004', description: 'Servidor AWS' }
     ],
     tags: [
       { name: 'DetalleBoleta', description: 'Operaciones de consulta de boletas' }
@@ -34,11 +34,12 @@ const swaggerOptions = {
 };
 
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 // ===============================================
 
-app.use(express.json());
+
 app.use(cors());
+app.use(express.json());
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 
 // ============================
